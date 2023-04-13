@@ -1,10 +1,11 @@
 
-name: Java CI with Gradle
+name: CI
 
 on:
-  
+  push:
+    branches: [ master ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ master ]
 
 permissions:
   contents: read
@@ -12,7 +13,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: Linux-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -22,8 +23,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      uses: gradle/gradle-build-action@v2
       with:
         arguments: build
-  - name: Run chmod to make gradlew executable
-   run: chmod +x ./gradlew
+    
